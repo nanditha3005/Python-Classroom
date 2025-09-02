@@ -5,7 +5,7 @@
 #Method Method:GET
 #Access Type:Public
 #Required Fields:None
-
+                    # using chatgpt
 import requests
 # Fetch API
 resp = requests.get("https://dummyjson.com/products")
