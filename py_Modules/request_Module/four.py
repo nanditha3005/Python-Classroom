@@ -6,5 +6,5 @@ import requests
 resp=requests.get('https://dummyjson.com/products')
 product_data=resp.json()
 print(type(product_data))  #<class,dict>
-#print(product_data)
+print(product_data)
 print(resp.status_code)
