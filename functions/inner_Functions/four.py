@@ -1,4 +1,4 @@
-#how to invoke inner function from outside---using function references
+#how to invoke inner function from outside---using return innerfunction references
 def user_module():
 
     def login():
