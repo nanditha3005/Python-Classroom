@@ -1798,4 +1798,5 @@ products= [
   ]
 
 
-Beauty_products=filter(lambda if prod:products())
+Beauty_products=filter(lambda  prod['category']=='beauty',products)
+print(Beauty_products)
