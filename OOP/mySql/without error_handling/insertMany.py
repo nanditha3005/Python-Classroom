@@ -11,7 +11,8 @@ sql_st='''
           insert into employees(eid,ename,esal) values(%s,%s,%s)
         '''
 cursor.executemany(sql_st,data)
-dbcon.commit()
+print(cursor.rowcount)
 
+dbcon.commit()
 cursor.close()
 dbcon.close()
