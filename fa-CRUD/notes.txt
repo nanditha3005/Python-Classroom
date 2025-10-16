@@ -1,0 +1,6 @@
+Rest API-1
+----------------
+usage:Application Root Request
+API URL: http://127.0.0.1:8000
+Method Type:GET
+
