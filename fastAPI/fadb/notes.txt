@@ -1,0 +1,89 @@
+mysql -uroot -proot 
+
+show databases;
+
+create database dbtwo;
+use dbtwo;
+
+create table employees(
+eid int,
+ename varchar(32),
+esal float,
+primary key(eid)
+);
+
+
+to work with db we need to import mysql connector
+  pip install mysql-connector-python
+
+
+----------------------------------------------
+Application Root
+--------------------
+Usage:application root request 
+REST API URL: 127.0.0.1:8000/
+Method Type:GET 
+Required Fields:None 
+Access Type:Public 
+
+Create
+----------
+Usage:Create new employees
+REST API URL: 127.0.0.1:8000/emp/
+Method Type:POST
+Required Fields:eid,ename,esal 
+Access Type:Public 
+
+Read
+-----------
+Usage:fetch all employees 
+REST API URL: 127.0.0.1:8000/emp/
+Method Type:GET 
+Required Fields:None
+Access Type:Public
+
+Read 
+------------
+Usage: Get employee by Id/eid  
+REST API URL: 127.0.0.1:8000/emp/101
+Method Type:GET 
+Required Fields:None
+Access Type:Public
+
+Update
+---------
+Delete
+--------
+
+--------------------------------------------------------------
+'''
+Create
+----------
+Usage:Create new employees
+REST API URL: 127.0.0.1:8000/emp/
+Method Type:POST
+Required Fields:eid,ename,esal 
+Access Type:Public 
+'''
+@app.post("/emp")
+async def create_emp(emp:Employee):
+    dbcon=get_db_connection()
+    cur=dbcon.cursor()
+    sqt_st='INSERT INTO employees(eid,ename,esal) values(%s,%s,%s);'
+    values=(emp.eid,emp.ename,emp.esal)
+    cur.execute(sqt_st,values)
+    dbcon.commit()
+    dbcon.close()
+    return {"msg":"New employee created"}
+
+Receives an Employee object (validated by Pydantic).
+Establishes a database connection using get_db_connection().
+Creates a cursor object to execute SQL queries.
+Defines an INSERT SQL statement to add a new employee to the employees table.
+Executes the query with the provided values (eid, ename, esal).
+Commits the transaction to save changes to the database.
+Closes the database connection.
+Returns a JSON response: {"msg": "New employee created"}.
+
+
+Note: The function assumes the employees table exists with columns eid, ename, and esal.
